@@ -1,0 +1,10 @@
+# Canon proprietary material - never commit (EULA forbids redistribution)
+win-lide400-1_2-n_mcd.exe
+extracted/
+
+# Build artifacts - distributed via GitHub Releases instead
+*.deb
+
+# OS noise
+Thumbs.db
+.DS_Store

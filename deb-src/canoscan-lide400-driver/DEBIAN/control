@@ -1,0 +1,21 @@
+Package: canoscan-lide400-driver
+Version: 1.2-1
+Architecture: all
+Maintainer: ASHRU <ashru@localhost>
+Section: graphics
+Priority: optional
+Depends: libsane1 (>= 1.0.28) | libsane (>= 1.0.28), sane-utils
+Recommends: simple-scan | skanlite | gscan2pdf | xsane
+Installed-Size: @@INSTALLED_SIZE@@
+Description: Driver enablement package for the Canon CanoScan LiDE 400 scanner
+ Makes the CanoScan LiDE 400 USB flatbed scanner work on Ubuntu/Debian
+ through SANE. The actual scanner driver is the SANE pixma backend
+ shipped in libsane1 (support added in sane-backends 1.0.28); this
+ package guarantees USB device permissions, disables USB autosuspend
+ for the scanner, and ships usage/provenance documentation.
+ .
+ Includes udev rules for USB ID 04a9:1912 and a README with scanning
+ instructions (scanimage, simple-scan). No proprietary Canon files
+ are redistributed; everything in this package was authored from
+ public SANE documentation and static analysis of the Windows
+ driver installer.

@@ -1,0 +1,16 @@
+Format: not specified
+Files: *
+Copyright: 2026 ASHRU
+License: MIT
+ Permission is granted, free of charge, to any person obtaining a copy
+ of this package to use, copy and modify the package contents (udev
+ rules and documentation authored for this package).
+
+ This package contains no Canon proprietary material. "CanoScan" and
+ "LiDE" are trademarks of Canon Inc.; this package is not endorsed by
+ Canon and only references the scanner hardware and public SANE
+ interface documentation.
+Comment:
+ The Linux driver for this device is the SANE pixma backend, licensed
+ GPL/LGPL as part of sane-backends (not redistributed here).
+ This package merely configures udev permissions for USB 04a9:1912.

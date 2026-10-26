@@ -1,0 +1,47 @@
+Provenance: analysis of the original Windows driver package
+============================================================
+
+Source file
+-----------
+  Name    : win-lide400-1_2-n_mcd.exe
+  Size    : 20,772,992 bytes
+  SHA-256 : 963BAA0D2F521B89E40176C4EC59C5634256B6879444E4D0E0C51EC237B3C03C
+  Format  : PE32 executable, WinZip Self-Extractor (section `_winzip_`,
+            ZIP payload starts at file offset 0x39000)
+
+Embedded ZIP payload
+--------------------
+  Entries  : 447
+  SHA-256  : 965066fba51867a0dd27e75b2646b23f056f8a89f28bdad104a9761749a680ef
+  Root     : win-lide400-1_2-n_mcd/
+
+Identified driver package
+-------------------------
+  Canon part number : CD-1803-000320, version 1.2, type "N_MCD(Win)"
+  Product           : CanoScan LiDE 400 (flatbed CIS scanner, USB only)
+  Supported OS      : Windows 7 SP1 through Windows 11, x86 + x64
+  Installers        : Msetup4.exe (612,952 B),
+                      win/MSetup.exe (6,645,848 B),
+                      win/MSetup64.exe (7,827,544 B)
+  Notable           : the win/Driver/ folder is EMPTY and
+                      InstallParameter.ini references online components
+                      (FILE_ONLINE=DRVSETUP\SETUP.EXE) -> this package is
+                      an ONLINE INSTALLER STUB; the actual INF/DLL/CAT
+                      driver files are downloaded during installation and
+                      are not present in this executable.
+
+Linux equivalent (what this deb configures)
+-------------------------------------------
+  Hardware USB ID   : 04a9:1912 (verified from SANE 1.2.1 device database;
+                      the Windows package itself contains no USB IDs)
+  Driver            : SANE pixma backend (libsane-genesys is not used)
+  Support since     : sane-backends 1.0.28
+                     ("pixma: Added Canon LiDE 400", ChangeLog-1.0.28)
+  Status            : Complete - all resolutions up to 4800 dpi
+                      (sane-backends.html, SANE 1.2.1 as shipped in
+                      Ubuntu 24.04, libsane 1.2.1-7build4)
+
+Analysis method: static carving of the PE/ZIP structures with local
+scripts (WinZip SFX section table, EOCD at 0x13CCAB0, central directory
+walk), plus inspection of Ubuntu 24.04 libsane packages. The Windows
+installer was never executed.

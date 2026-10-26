@@ -1,0 +1,21 @@
+# Canon CanoScan LiDE 400 - USB flatbed scanner enablement rules
+#
+# USB vendor/product: 04a9:1912
+# Source of identity: SANE 1.2.1 device database (sane-mfgs/sane-backends docs)
+# and the Windows driver package CD-1803-000320 v1.2 (device "LiDE 400").
+#
+# Modern libsane1 packages already tag this device via
+# /usr/lib/udev/hwdb.d/20-sane.hwdb. This rule guarantees permissions and
+# autosuspend handling even when the installed sane-backends is too old
+# to know this model.
+
+# Tag the device as SANE-supported; libsane's own rules use this to
+# disable USB autosuspend and apply scanner-group ACLs.
+ACTION=="add|change", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", \
+  ATTRS{idVendor}=="04a9", ATTRS{idProduct}=="1912", \
+  ENV{libsane_matched}="yes"
+
+# Fallback direct permissions (scanner group is created by libsane-common).
+ACTION=="add|change", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", \
+  ATTRS{idVendor}=="04a9", ATTRS{idProduct}=="1912", \
+  MODE="0664", GROUP="scanner", TEST=="power/control", ATTR{power/control}="on"

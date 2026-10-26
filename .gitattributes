@@ -1,0 +1,7 @@
+# Normalize line endings; force LF where scripts/rules require it
+* text=auto
+*.sh   text eol=lf
+postinst text eol=lf
+control   text eol=lf
+*.rules    text eol=lf
+*.md       text eol=lf

@@ -1,0 +1,29 @@
+#!/bin/sh
+# postinst for canoscan-lide400-driver
+set -e
+
+case "$1" in
+  configure)
+    # Make udev pick up the new rule without a reboot.
+    if command -v udevadm >/dev/null 2>&1; then
+      udevadm hwdb --update >/dev/null 2>&1 || true
+      udevadm control --reload >/dev/null 2>&1 || \
+        udevadm control --reload-rules >/dev/null 2>&1 || true
+    fi
+
+    # Informational capability check against the installed SANE docs.
+    if grep -q 'CanoScan LiDE 400' \
+         /usr/share/doc/libsane-common/sane-backends.html 2>/dev/null; then
+      echo "canoscan-lide400-driver: SANE pixma backend supports the CanoScan LiDE 400 (USB 04a9:1912)."
+    else
+      echo "canoscan-lide400-driver: WARNING: the installed SANE version does not advertise" >&2
+      echo "  LiDE 400 support (needs sane-backends >= 1.0.28 / Ubuntu 20.04+)." >&2
+    fi
+
+    echo "canoscan-lide400-driver: unplug and reconnect the scanner (or run:"
+    echo "  udevadm trigger --subsystem-match=usb) to apply permissions."
+    echo "  Test with: scanimage -L"
+    ;;
+esac
+
+exit 0
