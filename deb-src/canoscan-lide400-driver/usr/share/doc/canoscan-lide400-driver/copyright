@@ -11,6 +11,7 @@ License: MIT
  Canon and only references the scanner hardware and public SANE
  interface documentation.
 Comment:
- The Linux driver for this device is the SANE pixma backend, licensed
- GPL/LGPL as part of sane-backends (not redistributed here).
+ The Linux driver for this device is the SANE pixma backend, part of
+ the SANE project (free software, https://sane-project.org); it is not
+ redistributed by this package.
  This package merely configures udev permissions for USB 04a9:1912.

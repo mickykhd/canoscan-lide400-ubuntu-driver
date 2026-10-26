@@ -1,7 +1,7 @@
 Package: canoscan-lide400-driver
 Version: 1.2-1
 Architecture: all
-Maintainer: ASHRU <ashru@localhost>
+Maintainer: mickykhd <mickykhd@users.noreply.github.com>
 Section: graphics
 Priority: optional
 Depends: libsane1 (>= 1.0.28) | libsane (>= 1.0.28), sane-utils

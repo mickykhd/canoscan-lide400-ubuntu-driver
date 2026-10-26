@@ -1,0 +1,12 @@
+canoscan-lide400-driver (1.2-1) unstable; urgency=medium
+
+  * Initial release. Driver enablement package for the Canon CanoScan
+    LiDE 400 USB flatbed scanner (USB 04a9:1912).
+  * udev rule tags the device for SANE (libsane_matched), grants the
+    scanner group access and keeps USB autosuspend off.
+  * postinst reloads udev and checks that the installed SANE advertises
+    LiDE 400 support.
+  * Ships README and provenance documentation derived from static
+    analysis of the Windows driver installer (CD-1803-000320 v1.2).
+
+ -- mickykhd <mickykhd@users.noreply.github.com>  Mon, 26 Oct 2026 18:50:00 +0000

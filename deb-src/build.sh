@@ -19,6 +19,9 @@ find "$STAGE" -type d -exec chmod 0755 {} +
 find "$STAGE" -type f -exec chmod 0644 {} +
 chmod 0755 "$STAGE/DEBIAN/postinst"
 
+# Compress the Debian changelog (required by policy; gzip -n for determinism)
+gzip -n -9 "$STAGE/usr/share/doc/$PKG/changelog.Debian"
+
 # Installed-Size (data files only, KiB) and md5sums
 SIZE=$(du -sk "$STAGE/usr" | cut -f1)
 sed -i "s/@@INSTALLED_SIZE@@/$SIZE/" "$STAGE/DEBIAN/control"
